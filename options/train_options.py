@@ -21,14 +21,6 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--channel_shift_range', type=float, default=0.)
         parser.add_argument('--fill_mode', type=str, default='nearest')
 
-        # Data Loader
-        parser.add_argument('--target_size_x', type=int, default=150)
-        parser.add_argument('--target_size_y', type=int, default=150)
-        parser.add_argument('--batch_size', type=int, default=16)
-        parser.add_argument('--shuffle', type=bool, default=True)
-        parser.add_argument('--seed', type=int, default=32)
-        parser.add_argument('--interpolation', type=str, default='nearest')
-
         # Callbacks
         # Callbacks - Reduce Learning Rate On Plateau
         parser.add_argument('--reduce_lr', type=bool, default=False)

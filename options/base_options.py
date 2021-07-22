@@ -14,6 +14,15 @@ class BaseOptions():
         parser.add_argument('--train_dataset_dir', type=str, default='train')
         parser.add_argument('--test_dataset_dir', type=str, default='test')
         parser.add_argument('--results_dir', type=str, default='results')
+
+        # Data Loader
+        parser.add_argument('--target_size_x', type=int, default=150)
+        parser.add_argument('--target_size_y', type=int, default=150)
+        parser.add_argument('--batch_size', type=int, default=16)
+        parser.add_argument('--shuffle', type=bool, default=True)
+        parser.add_argument('--seed', type=int, default=32)
+        parser.add_argument('--interpolation', type=str, default='nearest')
+
         return parser
 
     def parse(self):

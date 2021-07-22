@@ -1,8 +1,12 @@
 import os
-import json, codecs
+import json
+import codecs
 import numpy as np
 from tensorflow import keras
 from datetime import datetime
+
+# Some models (eg EfficientNet) need to be imported before they can be installed.
+from models.getter import *
 
 
 def get_now():
@@ -12,6 +16,12 @@ def get_now():
 def makedirs(path):
     dir_name, _ = os.path.split(path)
     os.makedirs(dir_name, exist_ok=True)
+    return path
+
+
+def makedir(path):
+    if not os.path.exists(path):
+        os.mkdir(path)
     return path
 
 
@@ -55,4 +65,4 @@ def save_model(path, model):
 
 
 def load_model(path):
-    keras.models.load_model(path)
+    return keras.models.load_model(path)
