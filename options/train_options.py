@@ -31,7 +31,7 @@ class TrainOptions(BaseOptions):
 
         # Callbacks
         # Callbacks - Reduce Learning Rate On Plateau
-        parser.add_argument('--reduce_lr', type=bool, default=True)
+        parser.add_argument('--reduce_lr', type=bool, default=False)
         parser.add_argument('--reduce_lr_monitor', type=str, default='loss')
         parser.add_argument('--reduce_lr_factor', type=str, default=0.3)
         parser.add_argument('--reduce_lr_patience', type=str, default=5)

@@ -1,6 +1,6 @@
 import argparse
 import os
-from utils.utils import fix_opt_paths
+from utils.utils import fix_opt_paths, get_now, makedirs
 
 
 class BaseOptions():
@@ -13,7 +13,7 @@ class BaseOptions():
         parser.add_argument('--dataset_path', type=str, default='dataset')
         parser.add_argument('--train_dataset_dir', type=str, default='train')
         parser.add_argument('--test_dataset_dir', type=str, default='test')
-        parser.add_argument('--checkpoints_dir', type=str, default='checkpoints')
+        parser.add_argument('--results_dir', type=str, default='results')
         return parser
 
     def parse(self):
@@ -27,7 +27,8 @@ class BaseOptions():
         self.opt = fix_opt_paths(self.opt)
 
         self.opt.is_train = self.is_train
-
+        if self.opt.is_train:
+            self.opt.results_dir = makedirs(os.path.join(self.opt.results_dir, f'{self.opt.model}_{get_now()}'))
         self.opt.number_of_classes = len(os.listdir(self.opt.train_dataset_dir))
 
         self.print_options()

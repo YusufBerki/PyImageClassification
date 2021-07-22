@@ -1,4 +1,12 @@
 import os
+import json, codecs
+import numpy as np
+from tensorflow import keras
+from datetime import datetime
+
+
+def get_now():
+    return datetime.now().strftime('%Y_%m_%d_%H_%M')
 
 
 def makedirs(path):
@@ -18,3 +26,33 @@ def get_suffix(opt, prefix):
         opt = vars(opt)
 
     return {k.replace(prefix, ''): v for k, v in opt.items() if k.startswith(prefix) and k != prefix}
+
+
+def save_history(path, history):
+    makedirs(path)
+    new_hist = {}
+    for key in list(history.history.keys()):
+        new_hist[key] = history.history[key]
+        if type(history.history[key]) == np.ndarray:
+            new_hist[key] = history.history[key].tolist()
+        elif type(history.history[key]) == list:
+            if type(history.history[key][0]) == np.float64:
+                new_hist[key] = list(map(float, history.history[key]))
+
+    with codecs.open(path, 'w', encoding='utf-8') as file:
+        json.dump(new_hist, file, separators=(',', ':'), sort_keys=True, indent=4)
+
+
+def load_history(path):
+    with codecs.open(path, 'r', encoding='utf-8') as file:
+        n = json.loads(file.read())
+    return n
+
+
+def save_model(path, model):
+    makedirs(path)
+    model.save(path, save_format='h5')
+
+
+def load_model(path):
+    keras.models.load_model(path)
