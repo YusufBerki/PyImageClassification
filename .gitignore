@@ -1,9 +1,9 @@
 # Dataset files
-dataset/test/
-dataset/train/
+dataset/test/**/
+dataset/train/**/
 
 # Checkpoints files
-checkpoints/
+checkpoints/**/
 
 # Python
 .idea/
