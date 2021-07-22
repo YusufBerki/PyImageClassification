@@ -1,5 +1,3 @@
-import os
-
 from options.train_options import TrainOptions
 
 from data.data_generator import get_data_generator
@@ -7,7 +5,7 @@ from data.data_loader import get_data_loader
 
 from models.getter import model_getter
 
-from callbacks import get_callbacks
+from utils.callbacks import get_callbacks
 
 import warnings
 
