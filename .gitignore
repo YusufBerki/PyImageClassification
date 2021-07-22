@@ -1,0 +1,14 @@
+# Dataset files
+dataset/test/
+dataset/train/
+
+# Checkpoints files
+checkpoints/
+
+# Python
+.idea/
+__pycache__/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
