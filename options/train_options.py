@@ -34,6 +34,16 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--model_checkpoint', type=bool, default=False)
         parser.add_argument('--model_checkpoint_filepath', type=str, default=None)
         parser.add_argument('--model_checkpoint_save_weights_only', type=bool, default=True)
+        
+        # Callbacks - Early Stopping
+        parser.add_argument('--early_stopping', type=bool, default=True)
+        parser.add_argument('--early_stopping_monitor', type=str, default="val_loss")
+        parser.add_argument('--early_stopping_min_delta', type=float, default=0)
+        parser.add_argument('--early_stopping_patience', type=float, default=0)
+        parser.add_argument('--early_stopping_verbose', type=float, default=0)
+        parser.add_argument('--early_stopping_mode', type=str, default='auto')
+        parser.add_argument('--early_stopping_baseline', type=float, default=False)
+        parser.add_argument('--early_stopping_restore_best_weights', type=bool, default=False)
 
         # Training
         parser.add_argument('--weights', type=str, default='imagenet')

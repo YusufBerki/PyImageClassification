@@ -1,9 +1,11 @@
-from keras.callbacks import ReduceLROnPlateau, ModelCheckpoint
 from utils.utils import get_suffix
+from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
 
 callbacks = {
     "reduce_lr": ReduceLROnPlateau,
-    "model_checkpoint": ModelCheckpoint
+    "model_checkpoint": ModelCheckpoint,
+    "early_stopping": EarlyStopping
+
 }
 
 
