@@ -1,11 +1,12 @@
 from utils.utils import get_suffix
-from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
+from keras.callbacks import (EarlyStopping, ModelCheckpoint, ReduceLROnPlateau,
+                             TensorBoard)
 
 callbacks = {
     "reduce_lr": ReduceLROnPlateau,
     "model_checkpoint": ModelCheckpoint,
-    "early_stopping": EarlyStopping
-
+    "early_stopping": EarlyStopping,
+    "tensorboard":TensorBoard
 }
 
 
