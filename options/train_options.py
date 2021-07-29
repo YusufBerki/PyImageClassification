@@ -34,6 +34,9 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--model_checkpoint', type=bool, default=False)
         parser.add_argument('--model_checkpoint_filepath', type=str, default=None)
         parser.add_argument('--model_checkpoint_save_weights_only', type=bool, default=True)
+        parser.add_argument('--model_checkpoint_monitor', type=str, default='val_accuracy')
+        parser.add_argument('--model_checkpoint_mode', type=str, default='max')
+        parser.add_argument('--model_checkpoint_save_best_only', type=bool, default=True)
 
         # Callbacks - Early Stopping
         parser.add_argument('--early_stopping', type=bool, default=False)
@@ -46,7 +49,7 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--early_stopping_restore_best_weights', type=bool, default=False)
 
         # Callbacks - TensorBoard
-        parser.add_argument('--tensorboard', type=bool, default=True)
+        parser.add_argument('--tensorboard', type=bool, default=False)
         parser.add_argument('--tensorboard_log_dir', type=str, default='tensorboard_logs')
         parser.add_argument('--tensorboard_histogram_freq', type=int, default=0)
         parser.add_argument('--tensorboard_write_graph', type=bool, default=True)
