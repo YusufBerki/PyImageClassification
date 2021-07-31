@@ -22,7 +22,8 @@ class Predictor:
         self.y_pred_classes = np.argmax(self.y_pred_classes, axis=1)
 
         self.label_map = self.data_generator.class_indices
-        self.reversed_label_map = {v: k for k, v in self.data_generator.class_indices.items()}
+        self.reversed_label_map = {label_index: label_name for label_name, label_index in self.data_generator.class_indices.items()}
+        self.label_names = [label_name for _, label_name in sorted(self.reversed_label_map.items(), key=lambda item: item[0])]
 
         self.save_prediction_results()
 

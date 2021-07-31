@@ -40,6 +40,10 @@ class Visualization:
         sns_plot.set_xlabel('Prediction')
         sns_plot.xaxis.set_label_position('top')
         sns_plot.set_ylabel('Real')
+
+        sns_plot.set_xticklabels(self.predictor.label_names)
+        sns_plot.set_yticklabels(self.predictor.label_names)
+
         sns_plot.figure.savefig(os.path.join(self.charts_dir, 'confusion_matrix.jpg'))
 
     def get_accuracy_chart(self):
@@ -61,10 +65,14 @@ class Visualization:
         plt.savefig(os.path.join(self.charts_dir, 'loss.jpg'))
 
     def get_roc_curve(self):
-        skplt.metrics.plot_roc(self.predictor.y_test,
+        y_test = self.predictor.y_test.copy()
+        y_test = [self.predictor.label_names[index] for index in y_test]
+
+        skplt.metrics.plot_roc(y_test,
                                self.predictor.y_pred,
                                plot_micro=False,
-                               plot_macro=False)
+                               plot_macro=False,
+                               )
         plt.title('ROC Curve')
         plt.xlabel('1 - Specificity')
         plt.ylabel('Sensitivity')
