@@ -1,4 +1,6 @@
 # PyImageClassification
+<a href="https://www.codefactor.io/repository/github/yusufberki/pyimageclassification"><img src="https://www.codefactor.io/repository/github/yusufberki/pyimageclassification/badge" alt="CodeFactor" /></a>
+<img src="https://img.shields.io/github/license/YusufBerki/PyImageClassification">
 
 Python-based dynamic image classification project where you can train using Tensorflow, Keras from 26 different transfer learning models, use callback function like TensorBoard visualization tool and get graphics such as Confusion Matrix,
 ROC Curve.
