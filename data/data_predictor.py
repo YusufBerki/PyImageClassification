@@ -1,3 +1,5 @@
+import numpy as np
+
 class Predictor:
     def __init__(self, opt, model, data_generator):
         # Params
@@ -12,4 +14,5 @@ class Predictor:
         self.y_pred = self.model.predict_generator(self.data_generator)
 
         # Prediction Classes
-        self.y_pred_classes = self.model.predict_classes(self.data_generator)
+        self.y_pred_classes = self.model.predict(self.data_generator)
+        self.y_pred_classes = np.argmax(self.y_pred_classes, axis=1)

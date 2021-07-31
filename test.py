@@ -19,7 +19,7 @@ def test(opt):
     data_generator = get_data_generator(opt)
 
     # Load data
-    data_generator = get_data_loader(opt, data_generator, opt.train_dataset_dir)
+    data_generator = get_data_loader(opt, data_generator, opt.test_dataset_dir)
 
     # Load history
     history_path = os.path.join(opt.results_dir, 'model', 'history.json')
