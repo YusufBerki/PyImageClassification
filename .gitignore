@@ -12,3 +12,6 @@ __pycache__/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# Tensorboard logs
+tensorboard_logs/
+logs/

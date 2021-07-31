@@ -1,15 +1,14 @@
-from options.train_options import TrainOptions
-
-from data.data_generator import get_data_generator
-from data.data_loader import get_data_loader
+import os
+import warnings
 
 from models.getter import model_getter
+from options.train_options import TrainOptions
+
+from data.data_loader import get_data_loader
+from data.data_generator import get_data_generator
 
 from utils.utils import save_history, save_model
 from utils.callbacks import get_callbacks
-
-import os
-import warnings
 
 warnings.filterwarnings("ignore")
 

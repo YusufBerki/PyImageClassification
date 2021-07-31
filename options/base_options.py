@@ -9,7 +9,7 @@ class BaseOptions():
 
     def initialize(self, parser):
         self.initialized = True
-        parser.add_argument('--model', type=str, default='efficient_net_b5')
+        parser.add_argument('--model', type=str, default='InceptionV3')
         parser.add_argument('--dataset_path', type=str, default='dataset')
         parser.add_argument('--train_dataset_dir', type=str, default='train')
         parser.add_argument('--test_dataset_dir', type=str, default='test')

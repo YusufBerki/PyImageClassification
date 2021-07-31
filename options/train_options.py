@@ -37,6 +37,8 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--model_checkpoint_monitor', type=str, default='val_accuracy')
         parser.add_argument('--model_checkpoint_mode', type=str, default='max')
         parser.add_argument('--model_checkpoint_save_best_only', type=bool, default=True)
+        parser.add_argument('--model_checkpoint_verbose', type=int, default=0)
+        parser.add_argument('--model_checkpoint_save_freq', type=str, default="epoch")
 
         # Callbacks - Early Stopping
         parser.add_argument('--early_stopping', type=bool, default=False)
@@ -65,6 +67,10 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--input_shape_x', type=int, default=150)
         parser.add_argument('--input_shape_y', type=int, default=150)
         parser.add_argument('--input_shape_channel', type=int, default=3)
+        parser.add_argument('--number_of_fc_layer', type=int, default=2)
+        parser.add_argument('--fc_layer_size', type=int, default=1024)
+        parser.add_argument('--fc_activation', type=str, default='relu')
+        parser.add_argument('--dropout', type=float, default=0.5)
         parser.add_argument('--activation', type=str, default='softmax')
         parser.add_argument('--loss', type=str, default='categorical_crossentropy')
         parser.add_argument('--optimizer', type=str, default='adam')
