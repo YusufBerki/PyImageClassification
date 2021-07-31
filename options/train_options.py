@@ -15,9 +15,11 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--rotation_range', type=float, default=0)
         parser.add_argument('--width_shift_range', type=float, default=0.)
         parser.add_argument('--height_shift_range', type=float, default=0.)
-        parser.add_argument('--brightness_range', type=list, default=None)
+        parser.add_argument('--brightness_min', type=float, default=None)
+        parser.add_argument('--brightness_max', type=float, default=None)
         parser.add_argument('--shear_range', type=float, default=0.)
-        parser.add_argument('--zoom_range', type=float, default=0.)
+        parser.add_argument('--zoom_min', type=float, default=0.)
+        parser.add_argument('--zoom_max', type=float, default=0.)
         parser.add_argument('--channel_shift_range', type=float, default=0.)
         parser.add_argument('--fill_mode', type=str, default='nearest')
 
