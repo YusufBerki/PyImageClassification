@@ -23,6 +23,8 @@ class BaseOptions():
         parser.add_argument('--seed', type=int, default=32)
         parser.add_argument('--interpolation', type=str, default='nearest')
 
+        parser.add_argument('--gpu_ids', type=str, default=None)
+
         return parser
 
     def parse(self):
@@ -55,5 +57,3 @@ class BaseOptions():
             message += '{:>25}: {:<30}{}\n'.format(str(k), str(v), comment)
         message += '----------------- End -------------------'
         print(message)
-
-        # TODO: save options for report

@@ -5,9 +5,6 @@ import numpy as np
 from tensorflow import keras
 from datetime import datetime
 
-# Some models (eg EfficientNet) need to be imported before they can be installed.
-from models.getter import *
-
 
 def get_now():
     return datetime.now().strftime('%Y_%m_%d_%H_%M')
@@ -43,10 +40,10 @@ def save_history(path, history):
     new_hist = {}
     for key in list(history.history.keys()):
         new_hist[key] = history.history[key]
-        if type(history.history[key]) == np.ndarray:
+        if isinstance(history.history[key], np.ndarray):
             new_hist[key] = history.history[key].tolist()
-        elif type(history.history[key]) == list:
-            if type(history.history[key][0]) == np.float64:
+        elif isinstance(history.history[key], list):
+            if isinstance(history.history[key][0], np.float64):
                 new_hist[key] = list(map(float, history.history[key]))
 
     with codecs.open(path, 'w', encoding='utf-8') as file:
