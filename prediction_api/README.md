@@ -32,7 +32,7 @@ Run the following code for database migration:
 python manage.py migrate
 ```
 
-Edit [this](src/opt.py) file to enter the model path, the required size of the images, and the class names. It should be like this:
+Edit [this](prediction/src/opt.py) file to enter the model path, the required size of the images, and the class names. It should be like this:
 
 ```py
 model_path = '$YOUR_PRROJECT_DIR/results/$YOUR_TRAINING_DIR/model/model.h5'
