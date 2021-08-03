@@ -16,19 +16,18 @@ class PredictionAPIView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = PredictionSerializer(data=request.data)
 
-        if serializer.is_valid():
-            instance = serializer.save()
-
-            prediction_results = predict_image(instance.file.path)
-
-            instance.prediction_results = json.dumps(prediction_results)
-            instance.save()
-
-            response = {
-                "file": instance.file.url,
-                "results": prediction_results,
-            }
-            return Response(response, status=status.HTTP_201_CREATED)
-
-        else:
+        if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        instance = serializer.save()
+
+        prediction_results = predict_image(instance.file.path)
+
+        instance.prediction_results = json.dumps(prediction_results)
+        instance.save()
+
+        response = {
+            "file": instance.file.url,
+            "results": prediction_results,
+        }
+        return Response(response, status=status.HTTP_201_CREATED)
