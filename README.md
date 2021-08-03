@@ -14,6 +14,7 @@ ROC Curve.
 1. [Training](#training)
 1. [Testing](#testing)
 1. [Visualization](#visualization)
+1. [Prediction API](#prediction-api)
 
 ## Introduction
 
@@ -195,7 +196,7 @@ PyImageClassification
          │    ├─── accuracy.jpg
          │    ├─── confusion_matrix.jpg
          │    ├─── loss.jpg
-         │    ├─── roc_curve.jpg
+         │    └─── roc_curve.jpg
          │    
          └──── prediction_results.xlsx
 ```
@@ -208,12 +209,6 @@ cat\cat.0.jpg| cat| cat
 cat\cat.1.jpg| cat| dog
 dog\dog.0.jpg| dog| dog
 dog\dog.1.jpg| dog| dog
-
-## Prediction API
-
-Prediction API is a [django](https://www.djangoproject.com/) application where you can classify images with web API developed with [Django REST Framework](www.django-rest-framework.org/). 
-
-Follow [this](prediction_api/) documentation for more information.
 
 ## Visualization
 
@@ -236,6 +231,11 @@ Inside the `charts` folder you can view these 4 charts:
 #### 4 - Accuracy
 
 ![Example accuracy chart](docs/accuracy.jpg)
+
+## Prediction API
+
+Use the model you have trained with a web API. Check [this](prediction_api/) page for a [django](https://www.djangoproject.com/) application where you can classify images with web API developed
+with [Django REST Framework](www.django-rest-framework.org/).
 
 ## Contact
 
