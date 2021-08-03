@@ -1,6 +1,7 @@
 # PyImageClassification
+
 <a href="https://www.codefactor.io/repository/github/yusufberki/pyimageclassification"><img src="https://www.codefactor.io/repository/github/yusufberki/pyimageclassification/badge" alt="CodeFactor" /></a>
-<img src="https://img.shields.io/github/license/YusufBerki/PyImageClassification">
+<a href="https://github.com/YusufBerki/PyImageClassification/blob/master/LICENSE"><img src="https://img.shields.io/github/license/YusufBerki/PyImageClassification"></a>
 
 Python-based dynamic image classification project where you can train using Tensorflow, Keras from 26 different transfer learning models, use callback function like TensorBoard visualization tool and get graphics such as Confusion Matrix,
 ROC Curve.
@@ -40,7 +41,7 @@ Change directory to project directory with:
 cd PyImageClassification
 ```
 
-:warning: It is recommended that you create a virtual environment at this stage. 
+:warning: It is recommended that you create a virtual environment at this stage.
 
 After that to install the required libraries run the following code:
 
@@ -51,13 +52,11 @@ pip install -r requirements.txt
 ## Training
 
 ### Dataset Folder Structure
-Go to the `dataset` folder located under the project directory. 
-In the dataset folder, open two different folders as `train` and `test`. 
-For your training data, first open a folder for each class in the train folder, then put the images of each class in its own folder.
-Do the same for your test data inside the test folder. 
 
-In a case where you have two classes named `cat` and `dog`, 
-the folder structure should be like this:
+Go to the `dataset` folder located under the project directory. In the dataset folder, open two different folders as `train` and `test`. For your training data, first open a folder for each class in the train folder, then put the images of
+each class in its own folder. Do the same for your test data inside the test folder.
+
+In a case where you have two classes named `cat` and `dog`, the folder structure should be like this:
 
 ```
 PyImageClassification
@@ -85,20 +84,24 @@ PyImageClassification
               └─── ...
 
 ```
+
 ### Data Generation
+
 Generate batches of tensor image data with real-time data augmentation.
 
-It allows using augmentation methods such as 
-horizontal flip and vertical flip in real time. 
-You can find more information about these methods at [this](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator) link. 
-Check [here](options/train_options.py) (lines after the comment line named `Data Generator`) for available arguments.
+It allows using augmentation methods such as horizontal flip and vertical flip in real time. You can find more information about these methods
+at [this](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator) link. Check [here](options/train_options.py) (lines after the comment line named `Data Generator`) for available arguments.
 
 ### Start Training
+
 Basically you can start the training with:
+
 ``` sh
 python train.py --model InceptionV3 --batch_size 16
 ```
+
 ### Training Arguments
+
 Here are some arguments you can use for training:
 
 | command               | type | default                  | description                                                                                                                 |
@@ -118,12 +121,15 @@ Here are some arguments you can use for training:
 | --loss                | str  | categorical_crossentropy | Name of objective function                                                                                                  |
 
 To view all arguments, run this:
+
 ```sh
 python train.py --help
 ```
+
 or check [options](/options) folder
 
 ### Available Models
+
 All [available models in Keras](https://keras.io/api/applications/) are supported.
 
 |Model|Size|Top-1 Accuracy|Top-5 Accuracy|Parameters|Depth|
@@ -160,6 +166,7 @@ All [available models in Keras](https://keras.io/api/applications/) are supporte
 A callback is an object that can perform actions at various stages of training (e.g. at the start or end of an epoch, before or after a single batch, etc).
 
 You can use callbacks to:
+
 - Write TensorBoard logs after every batch of training to monitor your metrics
 - Periodically save your model to disk
 - Do early stopping
@@ -168,16 +175,17 @@ You can use callbacks to:
 Check [this](docs/callbacks.md) document for explanations and how to use callback functions
 
 ## Testing
-After the training is completed, a new folder will be created in the [`results`](results/) folder. 
-The folder is named like `{algorithm_name}_{training_date}`
-(e.g. `InceptionV3_2021_07_31_14_20`). 
+
+After the training is completed, a new folder will be created in the [`results`](results/) folder. The folder is named like `{algorithm_name}_{training_date}`
+(e.g. `InceptionV3_2021_07_31_14_20`).
 
 Models and history saved in the folder will be used in the testing. In an example where the folder name is `InceptionV3_2021_07_31_14_20`, the test code would be:
+
 ```sh
 python test.py --results_dir InceptionV3_2021_07_31_14_20
 ```
-When the code is successfully run and complete, 
-it will be in your `results` folder as follows:
+
+When the code is successfully run and complete, it will be in your `results` folder as follows:
 
 ```
 PyImageClassification
@@ -201,19 +209,32 @@ cat\cat.1.jpg| cat| dog
 dog\dog.0.jpg| dog| dog
 dog\dog.1.jpg| dog| dog
 
+## Prediction API
+
+Prediction API is a [django](https://www.djangoproject.com/) application where you can classify images with web API developed with [Django REST Framework](www.django-rest-framework.org/). 
+
+Follow [this](prediction_api/) documentation for more information.
+
 ## Visualization
-After the `test.py` is successfully completed, 
-the `charts` folder will be created in your `results` folder.
+
+After the `test.py` is successfully completed, the `charts` folder will be created in your `results` folder.
 
 Inside the `charts` folder you can view these 4 charts:
 
 #### 1 - Confusion Matrix
+
 ![Example confusion matrix](docs/confusion_matrix.jpg)
+
 #### 2 - ROC Curve
+
 ![Example roc curve](docs/roc_curve.jpg)
+
 #### 3 - Loss
+
 ![Example loss chart](docs/loss.jpg)
+
 #### 4 - Accuracy
+
 ![Example accuracy chart](docs/accuracy.jpg)
 
 ## Contact
