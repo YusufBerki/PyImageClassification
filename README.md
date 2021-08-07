@@ -9,12 +9,19 @@ ROC Curve.
 ## Table of Contents
 
 1. [Introduction](#introduction)
-1. [Requirements and Dependencies](#requirements-and-dependencies)
-1. [Installation](#installation)
-1. [Training](#training)
-1. [Testing](#testing)
-1. [Visualization](#visualization)
-1. [Prediction API](#prediction-api)
+2. [Requirements and Dependencies](#requirements-and-dependencies)
+3. [Installation](#installation)
+4. [Training](#training)
+    1. [Dataset Folder Structure](#dataset-folder-structure)
+    2. [Data Generation](#data-generation)
+    3. [Start Training](#start-training)
+    4. [Training Arguments](#training-arguments)
+    5. [Available Models](#available-models)
+    6. [Callback Functions](#callback-functions)
+    7. [Resume Training](#resume-training)
+5. [Testing](#testing)
+6. [Visualization](#visualization)
+7. [Prediction API](#prediction-api)
 
 ## Introduction
 
@@ -179,8 +186,7 @@ Check [this](docs/callbacks.md) document for explanations and how to use callbac
 
 If you stopped the training and want to resume from the epoch you left off, you need to set the `--resume` argument as `True` and set the `--results_dir` argument as your training folder in the `results` folder.
 
-**Note:** In order to save weights in each epoch, the `--model_checkpoint` value must be set to `True` in the first training. The `checkpoints` folder in `--results_dir` is used to resume the training. 
-The records in this folder are
+**Note:** In order to save weights in each epoch, the `--model_checkpoint` value must be set to `True` in the first training. The `checkpoints` folder in `--results_dir` is used to resume the training. The records in this folder are
 named `epoch_01_` by default. Based on these names, the weights are loaded for the **last** epoch.
 
 A sample code block to continue the training is as follows:
