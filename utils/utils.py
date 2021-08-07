@@ -36,7 +36,8 @@ def get_suffix(opt, prefix):
 
 
 def save_history(path, history):
-    makedirs(path)
+    directory, _ = os.path.split(path)
+    makedirs(directory)
     new_hist = {}
     for key in list(history.history.keys()):
         new_hist[key] = history.history[key]
@@ -57,7 +58,8 @@ def load_history(path):
 
 
 def save_model(path, model):
-    makedirs(path)
+    directory, _ = os.path.split(path)
+    makedirs(directory)
     model.save(path, save_format='h5')
 
 
