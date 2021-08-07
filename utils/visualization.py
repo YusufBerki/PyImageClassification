@@ -1,11 +1,10 @@
 import os
-
 import seaborn as sns
 import scikitplot as skplt
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 
-from utils.utils import load_history, load_model, makedir
+from utils.utils import makedir
 
 
 class Visualization:
