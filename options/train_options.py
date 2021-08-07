@@ -34,9 +34,9 @@ class TrainOptions(BaseOptions):
 
         # Callbacks - Save Model Checkpoints
         parser.add_argument('--model_checkpoint', type=bool, default=False)
-        parser.add_argument('--model_checkpoint_filepath', type=str, default=None)
+        parser.add_argument('--model_checkpoint_filepath', type=str, default='epoch_{epoch:02d}_loss_{loss:.2f}.hdf5')
         parser.add_argument('--model_checkpoint_save_weights_only', type=bool, default=True)
-        parser.add_argument('--model_checkpoint_monitor', type=str, default='val_accuracy')
+        parser.add_argument('--model_checkpoint_monitor', type=str, default='accuracy')
         parser.add_argument('--model_checkpoint_mode', type=str, default='max')
         parser.add_argument('--model_checkpoint_save_best_only', type=bool, default=True)
         parser.add_argument('--model_checkpoint_verbose', type=int, default=0)
@@ -64,6 +64,7 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--tensorboard_embeddings_freq', type=int, default=0)
 
         # Training
+        parser.add_argument('--resume', type=bool, default=False)
         parser.add_argument('--weights', type=str, default='imagenet')
         parser.add_argument('--include_top', type=bool, default=False)
         parser.add_argument('--input_shape_x', type=int, default=150)

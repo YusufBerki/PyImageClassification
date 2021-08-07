@@ -7,7 +7,7 @@ from options.train_options import TrainOptions
 from data.data_loader import get_data_loader
 from data.data_generator import get_data_generator
 
-from utils.utils import save_history, save_model
+from utils.utils import save_history, save_model, get_latest_checkpoint
 from utils.callbacks import get_callbacks
 
 warnings.filterwarnings("ignore")
@@ -26,8 +26,15 @@ def train(opt):
     # Get callbacks
     callbacks = get_callbacks(opt)
 
+    # Get checkpoint and initial epoch for resume training
+    checkpoint_path, initial_epoch = get_latest_checkpoint(opt.results_dir)
+
+    # Load weights from checkpoint
+    if checkpoint_path:
+        model.load_weights(checkpoint_path)
+
     # Fit model
-    history = model.fit(data_generator, batch_size=16, epochs=10, callbacks=callbacks)
+    history = model.fit(data_generator, batch_size=16, epochs=10, callbacks=callbacks, initial_epoch=initial_epoch)
 
     # Save history
     history_path = os.path.join(opt.results_dir, 'model', 'history.json')

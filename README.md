@@ -175,6 +175,20 @@ You can use callbacks to:
 
 Check [this](docs/callbacks.md) document for explanations and how to use callback functions
 
+### Resume Training
+
+If you stopped the training and want to resume from the epoch you left off, you need to set the `--resume` argument as `True` and set the `--results_dir` argument as your training folder in the `results` folder.
+
+**Note:** In order to save weights in each epoch, the `--model_checkpoint` value must be set to `True` in the first training. The `checkpoints` folder in `--results_dir` is used to resume the training. 
+The records in this folder are
+named `epoch_01_` by default. Based on these names, the weights are loaded for the **last** epoch.
+
+A sample code block to continue the training is as follows:
+
+```sh
+python train.py --resume True --results_dir results\InceptionV3_2021_07_31_14_20
+```
+
 ## Testing
 
 After the training is completed, a new folder will be created in the [`results`](results/) folder. The folder is named like `{algorithm_name}_{training_date}`

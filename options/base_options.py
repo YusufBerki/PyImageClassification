@@ -1,6 +1,6 @@
 import argparse
 import os
-from utils.utils import fix_opt_paths, get_now, makedirs
+from utils.utils import fix_opt_paths, get_now, makedirs, makedir
 
 
 class BaseOptions():
@@ -38,22 +38,43 @@ class BaseOptions():
         self.opt = fix_opt_paths(self.opt)
 
         self.opt.is_train = self.is_train
+
+        # Check train mode
         if self.opt.is_train:
-            self.opt.results_dir = makedirs(os.path.join(self.opt.results_dir, f'{self.opt.model}_{get_now()}'))
+
+            # Check resume mode
+            if not self.opt.resume:
+                # Create new training directory
+                self.opt.results_dir = makedirs(os.path.join(self.opt.results_dir, f'{self.opt.model}_{get_now()}'))
+
+            # Check save model checkpoint callbacks is active
+            if self.opt.model_checkpoint:
+                # Create checkpoints directory
+                checkpoints_dir = makedir(os.path.join(self.opt.results_dir, 'checkpoints'))
+
+                # Configure model checkpoints path
+                self.opt.model_checkpoint_filepath = os.path.join(checkpoints_dir, self.opt.model_checkpoint_filepath)
+
+        # Set number of classes
         self.opt.number_of_classes = len(os.listdir(self.opt.train_dataset_dir))
 
+        # Print all options
         self.print_options()
 
         return self.opt
 
     def print_options(self):
+        sep = '-' * 35
+
         message = ''
-        message += '----------------- Options ---------------\n'
+        message += f'{sep} Options {sep}\n'
+
         for k, v in sorted(vars(self.opt).items()):
             comment = ''
             default = self.parser.get_default(k)
             if v != default:  # check if it is not default
                 comment = f'\t[default: {default}]'
-            message += '{:>25}: {:<30}{}\n'.format(str(k), str(v), comment)
-        message += '----------------- End -------------------'
+            message += '{:>40}: {:<50}{}\n'.format(str(k), str(v), comment)
+
+        message += f'{sep} End {sep}'
         print(message)

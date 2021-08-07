@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import codecs
 import numpy as np
@@ -11,8 +12,11 @@ def get_now():
 
 
 def makedirs(path):
-    dir_name, _ = os.path.split(path)
-    os.makedirs(dir_name, exist_ok=True)
+    try:
+        os.makedirs(path, exist_ok=True)
+    except:
+        dir_name, _ = os.path.split(path)
+        os.makedirs(dir_name, exist_ok=True)
     return path
 
 
@@ -63,3 +67,22 @@ def save_model(path, model):
 
 def load_model(path):
     return keras.models.load_model(path)
+
+
+def get_latest_checkpoint(results_dir):
+    # Get checkpoints directory in results directory
+    checkpoints_dir = os.path.join(results_dir, 'checkpoints')
+
+    # Get saved checkpoints list
+    checkpoints = os.listdir(checkpoints_dir)
+
+    # Sort checkpoints by epoch number with epoch_{d}_ pattern
+    checkpoints = sorted(checkpoints, key=lambda x: int(re.search(r"(\d+)", re.search(r"epoch_(\d+)_", x)[0])[0]))
+
+    # Join path with checkpoints dir
+    last_checkpoint_path = os.path.join(checkpoints_dir, checkpoints[-1])
+
+    if checkpoints:
+        print(f"Load weights from {last_checkpoint_path}")
+
+    return last_checkpoint_path, len(checkpoints)
