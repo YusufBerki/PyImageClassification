@@ -78,6 +78,7 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--loss', type=str, default='categorical_crossentropy')
         parser.add_argument('--optimizer', type=str, default='adam')
         parser.add_argument('--metrics', type=str, default=["accuracy"])
+        parser.add_argument('--epoch', type=int, default=10)
 
         self.is_train = True
         return parser

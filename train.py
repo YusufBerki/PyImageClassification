@@ -34,7 +34,7 @@ def train(opt):
         model.load_weights(checkpoint_path)
 
     # Fit model
-    history = model.fit(data_generator, batch_size=16, epochs=10, callbacks=callbacks, initial_epoch=initial_epoch)
+    history = model.fit(data_generator, batch_size=opt.batch_size, epochs=opt.epoch, callbacks=callbacks, initial_epoch=initial_epoch)
 
     # Save history
     history_path = os.path.join(opt.results_dir, 'model', 'history.json')
