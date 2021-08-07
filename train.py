@@ -27,7 +27,7 @@ def train(opt):
     callbacks = get_callbacks(opt)
 
     # Get checkpoint and initial epoch for resume training
-    checkpoint_path, initial_epoch = get_latest_checkpoint(opt.results_dir)
+    checkpoint_path, initial_epoch = get_latest_checkpoint(opt)
 
     # Load weights from checkpoint
     if checkpoint_path:

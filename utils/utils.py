@@ -12,11 +12,7 @@ def get_now():
 
 
 def makedirs(path):
-    try:
-        os.makedirs(path, exist_ok=True)
-    except:
-        dir_name, _ = os.path.split(path)
-        os.makedirs(dir_name, exist_ok=True)
+    os.makedirs(path, exist_ok=True)
     return path
 
 
@@ -69,9 +65,12 @@ def load_model(path):
     return keras.models.load_model(path)
 
 
-def get_latest_checkpoint(results_dir):
+def get_latest_checkpoint(opt):
+    if not opt.resume:
+        return None, 0
+
     # Get checkpoints directory in results directory
-    checkpoints_dir = os.path.join(results_dir, 'checkpoints')
+    checkpoints_dir = os.path.join(opt.results_dir, 'checkpoints')
 
     # Get saved checkpoints list
     checkpoints = os.listdir(checkpoints_dir)
